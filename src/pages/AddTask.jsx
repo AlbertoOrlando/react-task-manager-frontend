@@ -1,13 +1,19 @@
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useContext } from "react";
+import { GlobalContext } from "../context/GlobalContext";
 
 
 const symbols = "!@#$%^&*()-_=+[]{}|;:'\\\",.<>?/`~";
 
 
 export default function AddTask() {
+
+    const { addTask } = useContext(GlobalContext);
+
+
     const [taskTitle, setTaskTitle] = useState("");
     const descriptionRef = useRef();
     const statusRef = useRef();
+
 
     const taskTitleError = useMemo(() => {
         if (!taskTitle.trim()) {
@@ -19,7 +25,7 @@ export default function AddTask() {
         return "";
     }, [taskTitle]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (taskTitleError) {
             return;
@@ -29,7 +35,15 @@ export default function AddTask() {
             description: descriptionRef.current.value,
             status: statusRef.current.value
         };
-        console.log("Nuova Task:", newTask);
+        try {
+            await addTask(newTask);
+            alert("Task aggiunta con successo!");
+            setTaskTitle("");
+            descriptionRef.current.value = "";
+            statusRef.current.value = "To do";
+        } catch (error) {
+            alert(error.message);
+        }
 
     }
 
@@ -56,8 +70,8 @@ export default function AddTask() {
                 </label>
                 <label>
                     Stato:
-                    <select ref={statusRef} defaultValue={"To Do"}>
-                        <option value="To Do">To Do</option>
+                    <select ref={statusRef} defaultValue={"To do"}>
+                        <option value="To do">To do</option>
                         <option value="Doing">Doing</option>
                         <option value="Done">Done</option>
 
