@@ -10,8 +10,8 @@ function App() {
       <BrowserRouter>
 
         <nav>
-          <NavLink to="/">Lista delle Task</NavLink>
-          <NavLink to="/add">Aggiungi Task</NavLink>
+          <NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/">Lista delle Task</NavLink>
+          <NavLink className={({ isActive }) => (isActive ? "active" : "")} to="/add">Aggiungi Task</NavLink>
         </nav>
         <Routes>
           <Route path="/" element={<TaskList />} />
