@@ -164,8 +164,6 @@ nav a.active {
   margin-top: 18px;
   padding: 10px 0;
   width: 100%;
-  background: #e53935;
-  color: #fff;
   border: none;
   border-radius: 4px;
   font-size: 1rem;
@@ -248,4 +246,53 @@ nav a.active {
 
 .modal-actions button:last-child:hover {
   background: #388e3c;
+}
+
+.edit-task-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+}
+
+.edit-task-modal-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.edit-task-modal-form input,
+.edit-task-modal-form textarea,
+.edit-task-modal-form select {
+  margin-top: 0.3rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.edit-task-modal-form textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.edit-task-modal-form input:focus,
+.edit-task-modal-form textarea:focus,
+.edit-task-modal-form select:focus {
+  outline: none;
+  border-color: #007bff;
+  background: #f0f8ff;
+  transition: border-color 0.2s;
+}
+
+
+.btn-edit-task {
+  background-color: yellow;
+  color: black;
+}
+
+.btn-delete-task {
+  background-color: red;
+  color: white;
 }
